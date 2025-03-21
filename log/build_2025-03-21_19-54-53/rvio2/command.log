@@ -1,2 +1,0 @@
-Invoking command in '/home/rosdev/ros2_ws/build/rvio2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rosdev/ros2_ws/src/rvio2 -DCMAKE_INSTALL_PREFIX=/home/rosdev/ros2_ws/install/rvio2
-Invoked command in '/home/rosdev/ros2_ws/build/rvio2' returned '1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rosdev/ros2_ws/src/rvio2 -DCMAKE_INSTALL_PREFIX=/home/rosdev/ros2_ws/install/rvio2

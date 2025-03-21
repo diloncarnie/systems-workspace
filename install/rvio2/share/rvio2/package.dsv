@@ -1,5 +1,0 @@
-source;share/rvio2/local_setup.bash
-source;share/rvio2/local_setup.dsv
-source;share/rvio2/local_setup.ps1
-source;share/rvio2/local_setup.sh
-source;share/rvio2/local_setup.zsh
