@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-dc612b14ee47656faf00.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "rvio2",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "rvio2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rvio2-Release-0d777865da5a37a1e56a.json",
+					"name" : "rvio2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rvio2_mono::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rvio2_mono-Release-cf2adf8683b5c4a0aeb3.json",
+					"name" : "rvio2_mono",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rvio2_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rvio2_uninstall-Release-7fd09fa0ceefed572da9.json",
+					"name" : "rvio2_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-Release-7e2961fe7f07e46c227b.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/rosdev/ros2_ws/build/rvio2",
+		"source" : "/home/rosdev/ros2_ws/src/rvio2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
