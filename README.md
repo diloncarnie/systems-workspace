@@ -1,1 +1,1 @@
-# ROS2 workspace for localization packages (Test)
+# ROS2 workspace for localization packages
