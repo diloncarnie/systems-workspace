@@ -1,0 +1,74 @@
+rvio2_mono:
+  ros__parameters:
+    # IMU Parameters
+    IMU:
+      dps: 200
+      sigma_g: 1.6968e-04
+      sigma_wg: 1.9393e-05
+      sigma_a: 2.0000e-3
+      sigma_wa: 3.0000e-3
+      nG: 9.8082
+      nSmallAngle: 0.001745329
+
+    # Camera Parameters
+    Camera:
+      fps: 20
+      width: 640
+      height: 400
+      RGB: 0
+      Fisheye: 1
+      fx: 458.654
+      fy: 457.296
+      cx: 367.215
+      cy: 248.375
+      k1: -0.28340811
+      k2: 0.07395907
+      p1: 0.00019359
+      p2: 1.76187114e-05
+      sigma_px: 0.002180293
+      sigma_py: 0.002186767
+      # Represent the 4x4 matrix as a flat list of 16 values.
+      T_BC0_GT: [0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975,
+                 0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768,
+                 -0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949,
+                 0.0, 0.0, 0.0, 1.0]
+      T_BC0: [0.0, -1.0, 0.0, 0.0,
+              1.0,  0.0, 0.0, 0.0,
+              0.0,  0.0, 1.0, 0.0,
+              0.0,  0.0, 0.0, 1.0]
+      nTimeOffset_GT: 0.0
+      nTimeOffset: 0.0
+
+    # Initialization Parameters
+    INI:
+      nTimeskip: 0
+      RecordOutputs: 0
+      EnableAlignment: 1
+      UseGroundTruthCalib: 0
+      nAngleThrd: 0.3
+      nLengthThrd: 0.01
+
+    # Tracker Parameters
+    Tracker:
+      nFeatures: 200
+      nMinTrackingLength: 3
+      nMaxTrackingLength: 15
+      nQualLvl: 0.01
+      nMinDist: 15
+      nMaxSlamPoints: 0
+      nGoodParallax: 5
+      nBlockSizeX: 150
+      nBlockSizeY: 120
+      EnableFilter: 0
+      EnableEqualizer: 1
+      nRansacIter: 16
+      UseSampson: 1
+      nSampsonErrThrd: 1e-6
+      nAlgebraicErrThrd: 1e-3
+
+    # Displayer Parameters
+    Displayer:
+      ShowTrack: 1
+      ShowNewer: 0
+      nLandmarkScale: 0.03
+      nLandmarkPubRate: 5
