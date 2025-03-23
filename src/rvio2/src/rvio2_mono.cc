@@ -127,27 +127,6 @@ int main(int argc, char **argv)
         std::bind(&ImageGrabber::GrabImage, &igb1, std::placeholders::_1)
     );
 
-    // // Create a TF broadcaster to publish transforms.
-    // auto tf_broadcaster = std::make_shared<tf2_ros::TransformBroadcaster>(node);
-
-    // // Create a subscription for the TransformStamped messages.
-    // auto tf_sub = node->create_subscription<geometry_msgs::msg::TransformStamped>(
-    //     "/vicon/firefly_sbx/firefly_sbx", rclcpp::QoS(10),
-    //     [tf_broadcaster, node](const geometry_msgs::msg::TransformStamped::SharedPtr msg)
-    //     {
-    //         // Create a copy and update header stamp, frame ids.
-    //         geometry_msgs::msg::TransformStamped transformStamped = *msg;
-    //         transformStamped.header.stamp = node->now();
-    //         transformStamped.header.frame_id = "world";
-    //         transformStamped.child_frame_id = "imu_real";
-    //         tf_broadcaster->sendTransform(transformStamped);
-    //         RCLCPP_DEBUG(node->get_logger(), "Broadcasted transform from %s to %s",
-    //                      transformStamped.header.frame_id.c_str(),
-    //                      transformStamped.child_frame_id.c_str());
-    //     }
-    // );
-
-
     // Spin the node so callbacks are processed
     rclcpp::spin(node);
     rclcpp::shutdown();
