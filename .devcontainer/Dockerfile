@@ -22,7 +22,8 @@ RUN apt update -q \
 RUN pip3 install opencv-python \
     smbus \
     easydict \
-    gpiozero
+    gpiozero \
+    lgpio
 
 # Create and switch to user
 RUN groupadd -g $GID $USERNAME \

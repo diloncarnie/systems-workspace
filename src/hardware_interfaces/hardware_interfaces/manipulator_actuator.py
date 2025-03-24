@@ -21,7 +21,7 @@ class ManipulatorActuator(Node):
         self.get_logger().info('Ran servo base callback to angle %d' % msg.data)
         
     def servo_gripper_callback(self, msg):
-        self.servo_base.angle = msg.data
+        self.servo_gripper.angle = msg.data
         self.get_logger().info('Ran servo gripper callback %d' % msg.data)
         
     def linear_actuator_callback(self, msg):

@@ -17,3 +17,8 @@ docker build -t my_image .devcontainer
     ```bash
     docker run -it -u rosdev --network=host --ipc=host -v $PWD:/home/rosdev/ros2_ws systems_ws
 	```
+
+
+docker run -it -u rosdev --network=host --ipc=host -v $PWD:/home/rosdev/ros2_ws --privileged --device=/dev/gpiochip0 --device=/dev/gpiomem0 --device=/dev/mem  systems_ws
+
+docker run -it -u rosdev --network=host --ipc=host -v $PWD:/home/rosdev/ros2_ws -v /dev:/dev --device-cgroup-rule='b *:* rwm' --device-cgroup-rule='c *:* rwm' systems_ws
