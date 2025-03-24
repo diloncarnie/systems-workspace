@@ -36,6 +36,6 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/rosdev/ros2_ws,type=bind",
   "mounts": [],
   "runArgs": [
-      "--net=host"
+      "--network=host", "--ipc=host"
   ]
 }
