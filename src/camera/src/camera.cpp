@@ -13,7 +13,7 @@ using namespace cv;
 
 class ColorDetectionNode : public rclcpp::Node {
 public:
-    ColorDetectionNode() : Node("color_detection_node"), camera_(0, CAP_DSHOW) {
+    ColorDetectionNode() : Node("color_detection_node"), camera_(0) {
         this->declare_parameter<string>("target_color", "yellow");
 
         if (!camera_.isOpened()) {
@@ -144,8 +144,9 @@ private:
             target_position_pub_->publish(target_position);
         }
 
-        imshow("Detection", frame);
-        if (waitKey(1) == 'q') rclcpp::shutdown();
+        // Stopping opencv imshow display
+        // imshow("Detection", frame);
+        // if (waitKey(1) == 'q') rclcpp::shutdown();
     }
 
     double calculate_angle(int x_center, int frame_width) {

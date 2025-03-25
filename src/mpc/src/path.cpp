@@ -106,7 +106,8 @@ private:
         Control control = nmpc_control(current_state_, target, dt_, control_weight_);
 
         // state update
-        current_state_ = predict_state(current_state_, control, dt_);
+        // Stop updating current state
+        //current_state_ = predict_state(current_state_, control, dt_);
 
         // publish commands
         auto cmd_vel_msg = geometry_msgs::msg::Twist();
