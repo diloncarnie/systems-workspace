@@ -39,7 +39,8 @@ WORKDIR /home/$USERNAME/ros2_ws
 # Copy configuration files
 RUN echo 'source /opt/ros/'$ROS_DISTRO'/setup.bash' >> /home/$USERNAME/.bashrc \
     && echo 'source /home/'$USERNAME'/ros2_ws/install/local_setup.bash' >> /home/$USERNAME/.bashrc \
-    && echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> /home/$USERNAME/.bashrc 
+    && echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> /home/$USERNAME/.bashrc  \
+    && echo 'export ROS_DOMAIN_ID=5' >> /home/$USERNAME/.bashrc 
 
 # Setup entrypoint
 COPY ros_entrypoint.sh /ros_entrypoint.sh
