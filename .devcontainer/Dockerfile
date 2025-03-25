@@ -16,6 +16,7 @@ RUN apt update -q \
     ros-humble-cv-bridge \
     ros-humble-rmw-cyclonedds-cpp \
     ros-humble-tf-transformations \
+    ros-humble-usb-cam \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

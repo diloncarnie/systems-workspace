@@ -118,12 +118,12 @@ int main(int argc, char **argv)
 
     // Create subscriptions with appropriate QoS settings.
     auto imu_sub = node->create_subscription<sensor_msgs::msg::Imu>(
-        "/imu0", rclcpp::QoS(100),
+        "/imu", rclcpp::QoS(100),
         std::bind(&ImuGrabber::GrabImu, &igb2, std::placeholders::_1)
     );
 
     auto image_sub = node->create_subscription<sensor_msgs::msg::Image>(
-        "/cam0/image_raw", rclcpp::QoS(1),
+        "/image_raw", rclcpp::QoS(1),
         std::bind(&ImageGrabber::GrabImage, &igb1, std::placeholders::_1)
     );
 
