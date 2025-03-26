@@ -15,7 +15,15 @@ docker build -t my_image .devcontainer
 1. Run the image:
 
     ```bash
-    docker run -it -u rosdev --network=host --ipc=host -v $PWD:/home/rosdev/ros2_ws -v /dev:/dev --device-cgroup-rule='b *:* rwm' --device-cgroup-rule='c *:* rwm' systems_ws
+    docker run -it \
+    -u rosdev \
+    --network=host \
+    --ipc=host \
+    -v $PWD:/home/rosdev/ros2_ws \
+    -v /dev:/dev \
+    --device-cgroup-rule='b *:* rwm' \
+    --device-cgroup-rule='c *:* rwm'  \
+    systems_ws
 	```
 
 

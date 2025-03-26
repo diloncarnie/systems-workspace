@@ -26,10 +26,10 @@ class MyPythonNode(Node):
                 ('frequency', 30),
                 ('frame_id', 'imu_link'),
                 ('i2c_address', 0x68),
-                ('i2c_port', 1),
-                ('acceleration_scale', [1.0, 1.0, 1.0]),
-                ('acceleration_bias', [0.0, 0.0, 0.0]),
-                ('gyro_bias', [0.0, 0.0, 0.0]),
+                ('i2c_port', 4),
+                ('acceleration_scale', [1.0110751569723688, 1.0126931627024809, 1.012677514093424]),
+                ('acceleration_bias', [-0.11281422383030165, -0.177789209930898, -0.47530048004638303]),
+                ('gyro_bias', [0.08602674219565244, -0.006262518861775638, -0.12414648011954171]),
                 ('magnetometer_scale', [1.0, 1.0, 1.0]),
                 ('magnetometer_bias', [1.0, 1.0, 1.0]),
                 ('magnetometer_transform', [
@@ -54,14 +54,14 @@ class MyPythonNode(Node):
         self.timer_publish_imu_values_ = self.create_timer(
             1.0/self.get_parameter('frequency')._value, self.publish_imu_values)
 
-        self.sensorfusion = kalman.Kalman()
+        # self.sensorfusion = kalman.Kalman()
         #self.sensorfusion = madgwick.Madgwick(0.5)
         self.imu.begin()
         self.imu.readSensor()    
-        self.imu.computeOrientation()
-        self.sensorfusion.roll = self.imu.roll
-        self.sensorfusion.pitch = self.imu.pitch
-        self.sensorfusion.yaw = self.imu.yaw
+        # self.imu.computeOrientation()
+        # self.sensorfusion.roll = self.imu.roll
+        # self.sensorfusion.pitch = self.imu.pitch
+        # self.sensorfusion.yaw = self.imu.yaw
         self.deltaTime = 0
         self.lastTime = self.get_clock().now()
 
@@ -75,13 +75,13 @@ class MyPythonNode(Node):
         #pitch = self.imu.pitch
         #roll = self.imu.roll
         #computeAndUpdateRollPitchYaw
-        self.sensorfusion.computeAndUpdateRollPitchYaw(\
-            self.imu.AccelVals[0], self.imu.AccelVals[1], self.imu.AccelVals[2],\
-            self.imu.GyroVals[0], self.imu.GyroVals[1], self.imu.GyroVals[2],\
-	        self.imu.MagVals[0], self.imu.MagVals[1], self.imu.MagVals[2], deltaTime)
-        yaw = self.sensorfusion.yaw
-        pitch = self.sensorfusion.pitch
-        roll = self.sensorfusion.roll
+        # self.sensorfusion.computeAndUpdateRollPitchYaw(\
+        #     self.imu.AccelVals[0], self.imu.AccelVals[1], self.imu.AccelVals[2],\
+        #     self.imu.GyroVals[0], self.imu.GyroVals[1], self.imu.GyroVals[2],\
+	    #     self.imu.MagVals[0], self.imu.MagVals[1], self.imu.MagVals[2], deltaTime)
+        # yaw = self.sensorfusion.yaw
+        # pitch = self.sensorfusion.pitch
+        # roll = self.sensorfusion.roll
 
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = self.get_parameter('frame_id')._value
@@ -107,7 +107,7 @@ class MyPythonNode(Node):
         msg.orientation.z = quat[2]
         msg.orientation.w = quat[3]
         self.publisher_imu_values_.publish(msg)
-        print("roll: {:4.2f} \tpitch : {:4.2f} \tyaw : {:4.2f}".format(self.sensorfusion.roll, self.sensorfusion.pitch, self.sensorfusion.yaw))
+        # print("roll: {:4.2f} \tpitch : {:4.2f} \tyaw : {:4.2f}".format(self.sensorfusion.roll, self.sensorfusion.pitch, self.sensorfusion.yaw))
 
 def main(args=None):
     rclpy.init(args=args)

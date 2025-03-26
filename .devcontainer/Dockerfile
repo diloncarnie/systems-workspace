@@ -17,6 +17,8 @@ RUN apt update -q \
     ros-humble-rmw-cyclonedds-cpp \
     ros-humble-tf-transformations \
     ros-humble-usb-cam \
+    ros-humble-rviz2 \
+    libogre1.12.10 \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -32,6 +34,7 @@ RUN groupadd -g $GID $USERNAME \
     && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
     
 # USER $USERNAME
+#RUN sudo chmod a+rw /dev/i2c-*
 
 # Create workspace so that user own this directory
 RUN mkdir -p /home/$USERNAME/ros2_ws/src
