@@ -11,6 +11,4 @@ echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 echo "source /home/rosdev/ros2_ws/install/local_setup.bash" >> ~/.bashrc
 echo "export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp" >> ~/.bashrc
 
-# ros2 run hardware_interfaces manipulator
-
 exec "$@"

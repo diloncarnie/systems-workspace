@@ -54,26 +54,26 @@ class MyPythonNode(Node):
         self.timer_publish_imu_values_ = self.create_timer(
             1.0/self.get_parameter('frequency')._value, self.publish_imu_values)
 
-        # self.sensorfusion = kalman.Kalman()
-        #self.sensorfusion = madgwick.Madgwick(0.5)
+        self.sensorfusion = kalman.Kalman()
+
         self.imu.begin()
         self.imu.readSensor()    
-        # self.imu.computeOrientation()
+        self.imu.computeOrientation()
+        
         # self.sensorfusion.roll = self.imu.roll
         # self.sensorfusion.pitch = self.imu.pitch
         # self.sensorfusion.yaw = self.imu.yaw
+        
         self.deltaTime = 0
         self.lastTime = self.get_clock().now()
 
     def publish_imu_values(self):
+        
         self.imu.readSensor()
-        #self.imu.computeOrientation()
         msg = Imu()
         deltaTime = (self.get_clock().now() - self.lastTime).nanoseconds * 10e9
         self.lastTime = self.get_clock().now()
-        #yaw = self.imu.yaw
-        #pitch = self.imu.pitch
-        #roll = self.imu.roll
+        
         #computeAndUpdateRollPitchYaw
         # self.sensorfusion.computeAndUpdateRollPitchYaw(\
         #     self.imu.AccelVals[0], self.imu.AccelVals[1], self.imu.AccelVals[2],\
@@ -86,26 +86,22 @@ class MyPythonNode(Node):
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = self.get_parameter('frame_id')._value
         # Direct measurements
-        msg.linear_acceleration_covariance = [0.0025, 0.0, 0.0, 0.0, 0.0025, 0.0, 0.0, 0.0, 0.0025]
+        msg.linear_acceleration_covariance = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         msg.linear_acceleration.x = self.imu.AccelVals[0]
         msg.linear_acceleration.y = self.imu.AccelVals[1]
         msg.linear_acceleration.z = self.imu.AccelVals[2]
-        msg.angular_velocity_covariance = [0.0025, 0.0, 0.0, 0.0, 0.0025, 0.0, 0.0, 0.0, 0.0025]
-        msg.angular_velocity.x = (self.imu.GyroVals[0]) #TODO this is acceleration not velocity (?!)
-        msg.angular_velocity.y = (self.imu.GyroVals[1]) #TODO this is acceleration not velocity (?!)
-        msg.angular_velocity.z = (self.imu.GyroVals[2]) #TODO this is acceleration not velocity (?!)
-        #msg.angular_velocity.x = 0.0 #TODO this is acceleration not velocity (?!)
-        #msg.angular_velocity.y = 0.0 #TODO this is acceleration not velocity (?!)
-        #msg.angular_velocity.z = 0.0 #TODO this is acceleration not velocity (?!)
-        # Calculate euler angles, convert to quaternion and store in message
-        msg.orientation_covariance = [0.0025, 0.0, 0.0, 0.0, 0.0025, 0.0, 0.0, 0.0, 0.0025]
+        msg.angular_velocity_covariance = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        msg.angular_velocity.x = (self.imu.GyroVals[0])
+        msg.angular_velocity.y = (self.imu.GyroVals[1])
+        msg.angular_velocity.z = (self.imu.GyroVals[2])
+        msg.orientation_covariance = [99999.9, 0.0, 0.0, 0.0, 99999.9, 0.0, 0.0, 0.0, 99999.9]
         # Convert to quaternion
-        quat = tf_transformations.quaternion_from_euler(
-            radians(roll), radians(pitch), radians(yaw))
-        msg.orientation.x = quat[0]
-        msg.orientation.y = quat[1]
-        msg.orientation.z = quat[2]
-        msg.orientation.w = quat[3]
+        # quat = tf_transformations.quaternion_from_euler(
+        #     radians(roll), radians(pitch), radians(yaw))
+        msg.orientation.x = 0.0
+        msg.orientation.y = 0.0
+        msg.orientation.z = 0.0
+        msg.orientation.w = 1.0
         self.publisher_imu_values_.publish(msg)
         # print("roll: {:4.2f} \tpitch : {:4.2f} \tyaw : {:4.2f}".format(self.sensorfusion.roll, self.sensorfusion.pitch, self.sensorfusion.yaw))
 
